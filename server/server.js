@@ -19,10 +19,17 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: "You've reached the server"});
 });
 
-app.listen(PORT, function () {
-    console.log(`Server is available at: http://localhost:8080`);
+app.get("/number", async (req, res) => {
+    // res.json({message: "You have asked for a number"});
+    try {
+        // if you forget the extra ()'s it will break.
+        const numbers = (await db.query(`select * from test`)).rows;
+        res.json(numbers);
+    } catch {
+        res.send(`There was an error`);
+    }
 });
 
-app.get("/messages", function (request, response) {
-  response.json({ message: "Hello, World!" });
+app.listen(8080, () => {
+    console.log(`Server is available at: http://localhost:8080`);
 });
