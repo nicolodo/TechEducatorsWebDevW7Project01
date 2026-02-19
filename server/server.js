@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.status(200).json({ message: "You've reached the server"});
 });
 
-app.listen(3000, function () {
-  console.log("Server is listening on port 3000...");
+app.listen(PORT, function () {
+    console.log(`Server is available at: http://localhost:8080`);
+});
+
+app.get("/messages", function (request, response) {
+  response.json({ message: "Hello, World!" });
 });
