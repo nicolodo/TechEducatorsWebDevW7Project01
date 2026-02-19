@@ -1,5 +1,5 @@
 Requirements
-🎯 Create a client using React.
+🎯 Create a client using React. ✅ I have created a vite react project in the client folder of the monorepo
 🎯 Use Express to create your server, using both GET and POST endpoints.
 🎯 Build a React form for users to create posts.
 🎯 Create multiple pages using React Router.
