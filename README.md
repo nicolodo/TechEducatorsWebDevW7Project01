@@ -1,6 +1,12 @@
 Requirements
-🎯 Create a client using React. ✅ I have created a vite react project in the client folder of the monorepo
+🎯 Create a client using React. 
+    ✅ I have created a vite react project in the client folder of the monorepo
 🎯 Use Express to create your server, using both GET and POST endpoints.
+    npm install express cors dotenv pg
+        express: server
+        cors: middleware like cloudflare?
+        dotenv: lets me use local environment vars
+        pg: lets me interact with a database like supabase
 🎯 Build a React form for users to create posts.
 🎯 Create multiple pages using React Router.
 🎯 Design a database schema, and seed the database with some realistic data.
