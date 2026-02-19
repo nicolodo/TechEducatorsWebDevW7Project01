@@ -23,7 +23,8 @@ app.get("/number", async (req, res) => {
     // res.json({message: "You have asked for a number"});
     try {
         // if you forget the extra ()'s it will break.
-        const numbers = (await db.query(`select * from test`)).rows;
+        const numbers = (await db.query(`select * from test
+            ORDER BY id`)).rows;
         res.json(numbers);
     } catch {
         res.send(`There was an error`);
