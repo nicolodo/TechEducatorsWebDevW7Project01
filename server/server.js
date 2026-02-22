@@ -2,7 +2,7 @@
 // // imports
 import express from "express";
 import dotenv from "dotenv";
-import pg from "pg";
+import pg, { Result } from "pg";
 import cors from "cors";
 
 // config
@@ -31,16 +31,20 @@ app.get('/', (req, res) => {
     let table = "test"
     let column = "number"
 //CREATE
-app.get("/create", async (req, res) => {
+app.post("/create", express.json(), async (req, res) => {
     try {
-        const create = await db.query(
-            `INSERT INTO test (${column}) VALUES (${value})`
+        console.log("I've got the Post req")
+        console.log(req.body)
+        const {Number} = req.body;
+        const result = await db.query(
+            `INSERT INTO test (${column}) VALUES ($1)`, [Number]
         )
         // const test = (await db.query(`INSERT INTO posts (title, content) VALUES ('cats',"they're the best")`))
-        res.send('I have created a new number for your table')
+        res.json(result.rows)
         console.log('I have created a new number for your table')
     } catch {
-        res.send('there was a problem inserting into posts')
+        res.json({Number: 7})
+        // res.send('there was a problem inserting into posts')
     }
 });
 
