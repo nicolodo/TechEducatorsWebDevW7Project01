@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router'
 import './App.css'
-import TestPage from './TestPage'
-import Header from './components/Header'
+// import CRUDTest from './CRUDTest'
+
+import {Create, Read} from './CRUDTest'
 
 function App() {
     return(
         <>
         <h1>Hello there!</h1>
-        <Header />
-        <TestPage />
+        {/* <CRUDTest /> */}
+        <Create /> 
+        <Read />
         </>
     )
 }
