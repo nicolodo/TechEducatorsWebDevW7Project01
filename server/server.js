@@ -26,15 +26,19 @@ app.get('/', (req, res) => {
 });
 
 // Time to CRUD
-    let id = 5
+    let id = 26
     let value = 9000
     let table = "test"
+    let column = "number"
 //CREATE
 app.get("/create", async (req, res) => {
     try {
-        const create = await db.query(`INSERT INTO test (number) VALUES (3)`)
+        const create = await db.query(
+            `INSERT INTO test (${column}) VALUES (${value})`
+        )
         // const test = (await db.query(`INSERT INTO posts (title, content) VALUES ('cats',"they're the best")`))
-        res.send('I have created rows')
+        res.send('I have created a new number for your table')
+        console.log('I have created a new number for your table')
     } catch {
         res.send('there was a problem inserting into posts')
     }
@@ -49,6 +53,7 @@ app.get("/read", async (req, res) => {
             ORDER BY id`);
         console.log("I'm getting back numbers for you!");
         res.json(numbers.rows);
+        // console.log("   Which are:",numbers.rows)
     } catch {
         res.send(`I didn't read it :)`);
     }
@@ -61,6 +66,7 @@ app.get("/update", async (req, res) => {
         const update = await db.query(
             `UPDATE test SET number = (${value}) WHERE id = (${id})`);
         console.log(`I updated id=${id} to ${value}`)
+        res.send(`I updated id=${id} to ${value}`)
     } catch {
         res.send(`I didn't update :)`)
     }
@@ -73,10 +79,12 @@ app.get("/delete", async (req, res) => {
             `SELECT from test WHERE id=${id}`
         )
         res.json(read)
+        console.log(read.rows)
         const deletion = await db.query(
             // `UPDATE test SET number = (${value}) WHERE id = (${id})`
             `DELETE from test WHERE id=${id}`
         );
+        
         console.log(`I deleted id=${id}`)
         
     } catch {
