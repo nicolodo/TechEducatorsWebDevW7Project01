@@ -16,7 +16,7 @@ const db = new pg.Pool({
 });
 
 app.get('/', (req, res) => {
-    res.status(200).json({ message: "You've reached the server"});
+    res.status(200).json({ message: "You've reached Nicolas's W7 project server"});
 });
 
 app.get("/number", async (req, res) => {
@@ -31,6 +31,7 @@ app.get("/number", async (req, res) => {
     }
 });
 
-app.listen(8080, () => {
-    console.log(`Server is available at: http://localhost:8080`);
+const PORT=8080
+app.listen(PORT, () => {
+    console.log(`Server is available at: http://localhost:${PORT}`);
 });
