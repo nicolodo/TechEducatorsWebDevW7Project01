@@ -4,15 +4,12 @@ import { Router, Route } from "react-router"
 import "./CRUDTest.css"
 
 export default function CRUDTest(){
+    const [items, setItems] = useState([]);
     
     return(
         <div>
-            {/* // make a form for the user to add stuff to the db */}
-            <p>make a form for the user to add stuff to the db</p>
-            <form id="messageForm">
-                <input type="text" name="message" id="messageInput" />
-                <button type="submit">Send</button>
-            </form>
+            <Create />
+            <Read />
         </div>
     );
 }
@@ -71,57 +68,48 @@ export function Create(){
                 <button type="submit">Send</button>
             </form>
             read()
-            <Read />
         </div>
     );
 }
 
-function read(){
+// async function fetchData() {
+//             console.log("I aim to fetch data yo!")
+//             const response = await fetch(
+//                 "http://localhost:8080/read"
+//             );
+//             const data = await response.json();
+//             console.log(data)
+//             return data;
+//             setItems(data);
+//         }
+
+export function Read(
+    // items,setItems
+) {
     const [items, setItems] = useState([]);
 
-    useEffect(()=> {
-        async function fetchData() {
-            console.log("I aim to fetch data yo!")
-            const response = await fetch(
-                "http://localhost:8080/read"
-            );
-            const data = await response.json();
-            setItems(data);
-        }
-        fetchData();
-    }, []);
-}
-
-export function Read() {
-    const [items, setItems] = useState([]);
-
-    useEffect(()=> {
-        async function fetchData() {
-            console.log("I aim to fetch data yo!")
-            const response = await fetch(
-                "http://localhost:8080/read"
-            );
-            const data = await response.json();
-            setItems(data);
-        }
-        fetchData();
-    }, []);
-
-    async function fetchData(){
+    useEffect(()=> {async function fetchData(){
         const response = await fetch(
             "http://localhost:8080/read"
         );
         const data = await response.json();
+        console.log(data)
         setItems(data);
     }
+        const data = fetchData();
+        // setItems(data), fetchData is asynchronous so its a promise
+        // and rendering a promise is an issue
+    }, []);
+
+    
 
     return (
         <div>
-            <button onClick={()=>{fetchData()}}>Click to update list</button>
+            {/* <button onClick={()=>{fetchData()}}>Click to update list</button> */}
             <h1>Items</h1>
             <ul>
                 {/* get the last 5 items in table */}
-                {items.slice(-6,-1).map((item)=> (
+                {items.slice(-5).map((item)=> (
                     // <li key={item.id}>{item.id}: {item.number}</li>
                     <li key={item.id}>{item.id}:{item.number}</li>
                 ))}

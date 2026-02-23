@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router'
 import './App.css'
-// import CRUDTest from './CRUDTest'
+import CRUDTest from './components/CRUDTest/CRUDTest'
 
-import {Create, Read} from './CRUDTest'
+import {Create, Read} from './components/CRUDTest/CRUDTest'
 
 function App() {
     return(
