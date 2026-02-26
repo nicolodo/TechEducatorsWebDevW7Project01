@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     let table = "test"
     let column = "number"
 //CREATE
-app.get("/create", async (req, res) => {
+app.post("/create", async (req, res) => {
     try {
         const create = await db.query(
             `INSERT INTO test (${column}) VALUES (${value})`

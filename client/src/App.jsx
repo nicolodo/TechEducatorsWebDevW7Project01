@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router'
 import './App.css'
-import TestPage from './TestPage'
+import TestPage from './pages/TestPage'
 import Header from './components/Header'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
         <>
         <h1>Hello there!</h1>
         <Header />
-        <TestPage />
+
         </>
     )
 }
